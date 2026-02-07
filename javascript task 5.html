@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Booking Form</title>
+   <style>
+    body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.options button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: 0;
+    cursor: pointer;
+    background-color: rgb(84, 120, 187);
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.options button.active {
+    background-color: rgb(16, 17, 17);
+    color: white;
+}
+
+h2{
+    font-size: 2.5rem;
+    color: blue;
+}
+label{
+    font-size: 1.5rem;
+    font-weight: bold;
+
+}
+
+
+   </style>
+</head>
+<body>
+
+    <h2>Flight Booking Form</h2>
+
+    <div class="options">
+        <button id="oneWayBtn">One-Way</button>
+        <button id="returnBtn">Return</button>
+    </div>
+
+    <form id="form">
+        <label>
+            Departure Date:
+            <input type="date" id="departureDate">
+        </label>
+        <br><br>
+
+        <label>
+            Return Date:
+            <input type="date" id="returnDate" disabled>
+        </label>
+
+        <button id="btn">submit</button>
+
+        
+    </form>
+
+    <script>
+        const oneWayBtn = document.getElementById("oneWayBtn");
+const returnBtn = document.getElementById("returnBtn");
+const returnDate = document.getElementById("returnDate");
+const departureDate=document.getElementById('departureDate')
+const submit=document.getElementById('btn')
+var form=document.getElementById('form')
+
+oneWayBtn.addEventListener("click", function () {
+    oneWayBtn.classList.add("active");
+    returnBtn.classList.remove("active");
+
+    returnDate.disabled = true;
+    returnDate.value = "";
+});
+
+returnBtn.addEventListener("click", function () {
+    returnBtn.classList.add("active");
+    oneWayBtn.classList.remove("active");
+
+    returnDate.disabled = false;
+});
+
+submit.addEventListener('click',function(event){
+    event.preventDefault()
+    console.log(departureDate.value );
+    console.log(returnDate.value);
+    
+    show()
+})
+
+
+
+    function show(){
+        for (let i = 0; i < form.length; i++) {
+
+           form.innerHTML=`<h2>flight booked</h2>
+        <h3>Departure: ${departureDate.value}</h3>
+        <h3>Return: ${returnDate.value}</h3>`
+            
+        }
+    }
+
+    </script>
+</body>
+</html>
